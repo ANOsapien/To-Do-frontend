@@ -1,0 +1,90 @@
+
+
+.firstdiv{
+    width: 600px;
+    height: 100px;
+    position: absolute; 
+    top: 30px;
+    left: 300px;
+}
+
+.line{
+    width: 1059px;
+    height: 0px;
+    top: 171px;
+    left: 286px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+    border: 1px solid #00000033;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.profileanduser{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0px;
+}
+
+.profilepicture{
+    width: 93px;
+    height: 93px;
+}
+
+.Username{
+    font-family: Inter;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-left: 50px;
+}
+
+.user-details{
+    display: flex;
+    gap: 25px;
+    flex-direction: column;
+}
+
+.user-row {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+.user-label {
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: gray;
+    width: 220px;
+}
+
+.user-value {
+    font-family: Inter;
+    line-height: 16px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;    
+    font-size: 18px;
+    flex-grow: 1;
+}
+
+.donut-container{
+    position: absolute; 
+    left: 450px;
+    top:400px;
+}
+
+.button{
+    position: absolute;
+    right: 100px;
+    bottom: 30px;
+}

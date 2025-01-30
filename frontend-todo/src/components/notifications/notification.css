@@ -1,0 +1,87 @@
+
+#notifbar{
+    width: 200px;
+    height: 100px;
+    position: absolute; 
+    left: 300px;
+    top: 50px;
+}
+
+.notifandicon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.notificon{
+    width: 50px;
+    height: 50px;
+}
+
+.notification{
+    font-family: Inter;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 32px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin: 0;
+    margin-left: 10px;
+}
+
+#line{
+    width: 859px;
+    height: 0px;
+    border: 1px solid #000000
+}
+
+.textandline{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top:160px;
+    left:320px
+}
+
+.firline{
+    flex-grow: 1;
+    height: 1px;
+    background-color: gray;
+    width: 710px;
+}
+
+.text{
+    margin-right: 30px;
+    font-size: 20px;
+}
+
+.textandlineagain{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top:380px;
+    left:320px;
+    white-space: nowrap;
+}
+
+.secline{
+    flex-grow: 1;
+    height: 1px;
+    background-color: gray;
+    width: 688px;
+}
+
+.firsttable{
+    position:absolute;
+    top: 200px;
+    left:350px;
+}
+.secondtable{
+    position:absolute;
+    top: 420px;
+    left:350px;
+}

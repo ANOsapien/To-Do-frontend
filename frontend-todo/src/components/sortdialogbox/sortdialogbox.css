@@ -1,0 +1,42 @@
+
+
+.dialogbox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    position: fixed;
+    top: 130px;
+    left: 925px;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+  }
+
+img{
+  width: 19px;
+  height: 17.11px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button{
+  background-color: white;
+  text-align: justify;
+  padding: 0;
+  width: 140px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexed{
+  flex-grow: 1;
+}
