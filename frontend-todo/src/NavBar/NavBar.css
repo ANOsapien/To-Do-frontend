@@ -1,0 +1,66 @@
+.opt img {
+    height: 1.2em;
+    width: auto; /* Keeps the aspect ratio */
+    vertical-align: middle;
+  }
+  .NavBar{
+    height: 100%;
+    width: 211px;
+    background: #FFF0F0;
+    position: absolute;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  a{
+    color: black;
+    text-decoration: none;
+  }
+  .opt:hover{
+    background: #fff0f000;
+  
+  }
+  .opt{
+    margin: 10px;
+    font-size: 18px;
+  }
+  .AddTask img{
+    height: 2em;
+    width: auto; /* Keeps the aspect ratio */
+    vertical-align: middle;
+    margin-left: 15px;
+  }
+  .AddTask{
+    color:rgb(155, 0, 0);
+    font-size: 18px ;
+  }
+  .UserIcon img{
+    height: 2em;
+    width: auto; /* Keeps the aspect ratio */
+    vertical-align: middle;
+    /* margin-left: 15px; */
+  }
+  .UserIcon{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .CollapseIcon{
+    height:21.6px;
+    width :auto;
+    position:absolute;
+    left:180px;
+    top:5px;
+  }
+  .NightModeIcon{
+    height:21.6px;
+    width :auto;
+    position:absolute;
+    left:155px;
+    top:5px;
+  }
+  a:hover{
+    color:red;
+
+  }
+  .Inboxicon{
+    opacity: 0.2;
+
+  }
