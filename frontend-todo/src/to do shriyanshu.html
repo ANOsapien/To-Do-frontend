@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    .todo-container {
+      width: 90%;
+      max-width: 400px;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .todo-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .todo-item:last-child {
+      border-bottom: none;
+    }
+
+    .add-task-btn {
+      background: #1abc9c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .add-task-btn:hover {
+      background: #16a085;
+      transform: scale(1.05);
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 62, 80, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s;
+    }
+
+    .popup.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .popup-content input, .popup-content select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .popup-content button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .popup-content button:hover {
+      background: #2980b9;
+    }
+
+    .sort-options {
+      margin: 10px 0;
+      color: #34495e;
+    }
+
+    .sort-options select {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background-color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h1>To-Do List</h1>
+    <div class="sort-options">
+      <label for="sort">Sort By Date:</label>
+      <select id="sort">
+        <option value="ascending">Ascending</option>
+        <option value="descending">Descending</option>
+      </select>
+    </div>
+    <ul class="todo-list" id="todoList"></ul>
+    <button class="add-task-btn" id="addTaskBtn">Add Task</button>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h3>Add a New Task</h3>
+      <input type="text" id="taskInput" placeholder="Enter task">
+      <select id="priority">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <button id="saveTaskBtn">Save Task</button>
+    </div>
+  </div>
+
+  <script>
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const popup = document.getElementById('popup');
+    const saveTaskBtn = document.getElementById('saveTaskBtn');
+    const taskInput = document.getElementById('taskInput');
+    const priorityInput = document.getElementById('priority');
+    const todoList = document.getElementById('todoList');
+    const sortSelect = document.getElementById('sort');
+
+    let tasks = [];
+
+    addTaskBtn.addEventListener('click', () => {
+      popup.classList.add('active');
+      taskInput.focus();
+    });
+
+    saveTaskBtn.addEventListener('click', () => {
+      const task = taskInput.value.trim();
+      const priority = priorityInput.value;
+      if (task) {
+        const taskObj = {
+          text: task,
+          priority: priority,
+          date: new Date().toISOString(),
+        };
+        tasks.push(taskObj);
+        renderTasks();
+        taskInput.value = '';
+        popup.classList.remove('active');
+      }
+    });
+
+    function renderTasks() {
+      todoList.innerHTML = '';
+
+      if (sortSelect.value === 'ascending') {
+        tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } else {
+        tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
+      }
+
+      tasks.forEach((task) => {
+        const li = document.createElement('li');
+        li.classList.add('todo-item');
+        li.innerHTML = `
+          <span>${task.text} (Priority: ${task.priority})</span>
+          <button onclick="markDone('${task.date}')">Done</button>
+        `;
+        todoList.appendChild(li);
+      });
+    }
+
+    function markDone(date) {
+      tasks = tasks.filter((task) => task.date !== date);
+      renderTasks();
+    }
+
+    sortSelect.addEventListener('change', renderTasks);
+
+    window.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.classList.remove('active');
+      }
+    });
+  </script>
+
+  <footer style="margin-top: 20px; text-align: center; font-size: 14px; color: #555;">
+    Made by Shriyanshu Gupta
+  </footer>
+</body>
+</html>
