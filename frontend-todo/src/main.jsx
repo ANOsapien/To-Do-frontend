@@ -5,6 +5,6 @@ import Inbox from './components/inbox/inbox'
 import UserPage from "./components/userpage/userpage"
 
 createRoot(document.getElementById('root')).render(
-    <Notification />
+    <Inbox />
 )
  

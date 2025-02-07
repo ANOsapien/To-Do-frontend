@@ -1,36 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./userpage.css"
 import profile from "../../assets/Generic avatar.png";
 import DonutChart from "../doughnutchart/doughnutchart";
 import EditProfileModal from "../editprofile/editprofile";
 
-function UserPage(){
+function UserPage({userId}){
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const [userData, setUserData] = useState({
-        firstName: "Ananya",
-        lastName: "Priyaroop",
+        firstname: "Ananya",
+        lastname: "Priyaroop",
         email: "ap123@gmail.com",
         institute: "IIT Bombay",
     });
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+              const response = await fetch(`http://127.0.0.1:8000/User/get/${userId}/`);
+              const data = await response.json();
+              setUserData(data);
+            } catch (error) {
+              console.error('Error fetching user data:', error);
+            }
+          };
+          fetchUserData();
+        },[userId])
 
     return(
     <>
     <div className = "firstdiv">
         <div className='profileanduser'>
             <img src = {profile} alt="profile oicture" className='profilepicture'/>
-            <h1 className='Username'>{userData.firstName}</h1>
+            <h1 className='Username'>{userData.firstname}</h1>
         </div>
         <hr className = "line" />
         <div className='user-details'>
             <div className="user-row">
                 <span className="user-label">first name</span>
-                <span className="user-value">{userData.firstName}</span>
+                <span className="user-value">{userData.firstname}</span>
             </div>
             <div className="user-row">
                 <span className="user-label">last name</span>
-                <span className="user-value">{userData.lastName}</span>
+                <span className="user-value">{userData.lastname}</span>
             </div>
             <div className="user-row">
                 <span className="user-label">email</span>
@@ -51,6 +64,7 @@ function UserPage(){
           userData={userData}
           setUserData={setUserData}
           closeModal={() => setIsModalOpen(false)}
+          UserID = {userId}
         />
       )}
     </>
